@@ -1,0 +1,7 @@
+{
+  "name": "movieparadise",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/iamdhrooov/movieparadise.git",
+  "license": "MIT"
+}
