@@ -1,0 +1,33 @@
+# dependencies
+/node_modules
+
+# production
+/build
+/build-dev
+
+# misc
+.DS_Store
+.env.development.local
+.env.test.local
+.env.production.local
+.env.production
+.env.development
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+#not required files
+debug.log
+package-lock.json
+
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
+#editor specific's
+.idea

@@ -1,0 +1,21 @@
+.bg-movie-cover {
+  height: 400px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+.movie-card-placed {
+  position: absolute;
+  left: 50px;
+  bottom: -300px;
+}
+.movie-info-text {
+  position: absolute;
+  top: 100%;
+  left: 460px;
+  padding: 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
