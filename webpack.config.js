@@ -33,7 +33,7 @@ module.exports = (env) => {
   }
 
   const output = {
-    path: resolve(process.cwd(), 'dist'),
+    path: resolve(process.cwd(), 'public'),
     filename: env.dev ? `[name].[hash].${version}.js` : `[name].${version}.js`,
     publicPath: env.prod ? './' : env.dev ? './' : 'http://localhost:9000/',
   };
@@ -80,7 +80,7 @@ module.exports = (env) => {
       new CopyWebpackPlugin({
         patterns: [
           {
-            from: './public/.',
+            from: './dist/.',
             to: '.',
             globOptions: {
               ignore: ['**/index.html'],
@@ -93,7 +93,7 @@ module.exports = (env) => {
         process: 'process/browser.js',
       }),
       new HtmlWebpackPlugin({
-        template: 'public/index.html',
+        template: 'dist/index.html',
         minify: env.prod ? true : false,
       }),
       ...(isProd && !isLocal
@@ -107,7 +107,7 @@ module.exports = (env) => {
     ]),
     devServer: {
       historyApiFallback: true,
-      static: './dist',
+      static: './public',
       compress: true,
       port: 9000,
       client: {
