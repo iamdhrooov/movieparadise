@@ -7,7 +7,7 @@ import {
   GraphQLList,
 } from 'graphql';
 
-const API_KEY = process.env.API_KEY;
+const API_KEY = process.env.API_KEY || 'b952b6fd269faac52915ed8ea47547d7';
 
 const MovieDBPath = 'https://api.themoviedb.org/3/movie';
 const PopularMoviesType = new GraphQLObjectType({

@@ -3,3 +3,33 @@
   width: 100%;
   background: #070f15;
 }
+
+.search-bar {
+  float: right;
+  padding: 0 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.search-bar-container {
+  background: #0f202d;
+  border-radius: 20px;
+  width: 500px;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 0 20px;
+  align-items: center;
+}
+
+.input-style {
+  width: 100%;
+  height: 40px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: white;
+}
