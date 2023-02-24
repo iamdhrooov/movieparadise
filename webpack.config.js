@@ -35,11 +35,7 @@ module.exports = (env) => {
   const output = {
     path: resolve(process.cwd(), 'dist'),
     filename: env.dev ? `[name].[hash].${version}.js` : `[name].${version}.js`,
-    publicPath: env.prod
-      ? 'http://localhost:9000/'
-      : env.dev
-      ? 'http://localhost:9000/'
-      : 'http://localhost:9000/',
+    publicPath: env.prod ? './' : env.dev ? './' : 'http://localhost:9000/',
   };
 
   return {

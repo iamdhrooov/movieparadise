@@ -10,7 +10,6 @@ import {
 const API_KEY = process.env.API_KEY;
 
 const MovieDBPath = 'https://api.themoviedb.org/3/movie';
-
 const PopularMoviesType = new GraphQLObjectType({
   name: 'PopularMovies',
   fields: {

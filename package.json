@@ -21,8 +21,7 @@
     "pretty:all": "prettier --write \"src/**/*.(ts|tsx)\"",
     "clean": "rm -r dist || true",
     "start": "webpack serve --config webpack.config.js --env local --hot --host 0.0.0.0",
-    "build:dev": "yarn clean && webpack --config webpack.config.js --env dev --mode production && (rm -rf ./dist/**/*.js.map || true)",
-    "build:prod": "yarn clean && webpack --config webpack.config.js --env prod --mode production && (rm -rf ./dist/**/*.js.map || true)",
+    "build:": "yarn clean && webpack --config webpack.config.js --env prod --mode production && (rm -rf ./dist/**/*.js.map || true)",
     "start:server": "nodemon --exec ts-node server/index.ts",
     "compile": "graphql-codegen",
     "watch": "graphql-codegen -w"
