@@ -22,7 +22,7 @@
     "clean": "rm -r public || true",
     "start:client": "webpack serve --config webpack.config.js --env local --hot --host 0.0.0.0",
     "build": "yarn clean && webpack --config webpack.config.js --env prod --mode production && (rm -rf ./public/**/*.js.map || true)",
-    "start": "ts-node server/index.ts",
+    "start": "nodemon --exec ts-node server/index.ts",
     "compile": "graphql-codegen",
     "watch": "graphql-codegen -w"
   },
