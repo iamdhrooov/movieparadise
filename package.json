@@ -49,7 +49,9 @@
     "react-dom": "17.0.1",
     "react-router": "^4.0.0",
     "react-router-dom": "^5.2.0",
-    "reflect-metadata": "^0.1.10"
+    "reflect-metadata": "^0.1.10",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.5"
   },
   "devDependencies": {
     "@babel/cli": "^7.19.3",
@@ -104,8 +106,6 @@
     "style-loader": "^3.3.1",
     "terser-webpack-plugin": "^5.3.6",
     "ts-loader": "^9.4.1",
-    "ts-node": "^10.9.1",
-    "typescript": "^4.9.5",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.11.1",
