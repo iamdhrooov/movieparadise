@@ -8,7 +8,6 @@ import '../styles/home.scss';
 import {Paradise} from '../utils/types';
 
 const Home = () => {
-  // our query's result, data, is typed!
   const {loading, data} = useQuery(GET_POPULAR_MOVIES as any);
   const history = useHistory();
   const [popularMovies, setPopularMovies] = useState(
@@ -30,21 +29,27 @@ const Home = () => {
     <div className='home-wrapper'>
       <AppBar onSearch={doSearch} />
       <div className='popular-movies'>
-        <h2 className='light-text'>Popular Movies</h2>
-        {loading ? (
-          'Loading...'
-        ) : (
-          <ul className='movie-list'>
-            {popularMovies.map((movie) => (
+        <h2>Popular Movies</h2>
+        <ul className='movie-list'>
+          {loading ? (
+            <div className='loading-div'>
+              <h2>Loading movies...</h2>
+            </div>
+          ) : popularMovies.length ? (
+            popularMovies.map((movie) => (
               <li
                 style={{float: 'left', margin: '1em', cursor: 'pointer'}}
                 onClick={() => history.push(`/movie/${movie.id}`)}
                 key={movie.id}>
                 <MovieCard {...movie} />
               </li>
-            ))}
-          </ul>
-        )}
+            ))
+          ) : (
+            <div className='loading-div'>
+              <h2>No movies found.</h2>
+            </div>
+          )}
+        </ul>
       </div>
     </div>
   );
