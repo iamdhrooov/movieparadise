@@ -10,7 +10,8 @@ const MovieCard = (props: Paradise.MovieCardInfo) => {
             className='movie-img'
             style={{backgroundImage: `url(${props.poster_path})`}}></div>
           <div className='text-movie-cont'>
-            <h5>SUMMARY</h5>
+            <h2 style={{paddingBottom: 12}}>{props.title}</h2>
+            <h6>SUMMARY</h6>
             <p className='movie-description'>{props.overview}</p>
           </div>
         </div>

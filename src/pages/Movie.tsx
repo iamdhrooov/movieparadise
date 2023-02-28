@@ -28,18 +28,18 @@ const Movie = () => {
           </div>
           <div className='movie-info-text'>
             <h1>{movieData.title}</h1>
-            <h4>{movieData.genres}</h4>
-            <h5>{movieData.production_companies}</h5>
-            <h3>
+            <h5>{movieData.genres}</h5>
+            <p>{movieData.production_companies}</p>
+            <p>
               <b>Releasing on:</b> {movieData.release_date}
-            </h3>
-            <h3>
+            </p>
+            <p>
               <b>Duration:</b> {movieData.runtime}
-            </h3>
-            <h3>
+            </p>
+            <p>
               <b>IMDb Rating:</b> {movieData.vote_average}
-            </h3>
-            <h3>{movieData.overview}</h3>
+            </p>
+            <p>{movieData.overview}</p>
           </div>
         </div>
       </div>

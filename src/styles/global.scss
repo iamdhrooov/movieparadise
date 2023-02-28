@@ -22,26 +22,37 @@ h1,
 h2,
 h3,
 h4,
-h5 {
+h5,
+h6 {
   font-family: $heading-font-family;
   margin: 0px;
   color: $accent-color;
 }
 
 h1 {
-  font-size: $text-movie-title;
-  font-weight: $font-regular;
-  color: $accent-color;
+  font-size: 32px;
+  line-height: 32px;
 }
-
+h2 {
+  font-size: 24px;
+  line-height: 24px;
+}
 h3 {
-  font-size: $text-action-btn;
-  font-weight: $font-regular;
-  color: $accent-color;
+  font-size: 20px;
+  line-height: 20px;
 }
-
+h4 {
+  font-size: 18px;
+  line-height: 18px;
+}
 h5 {
-  font-size: $text-summary;
-  font-weight: $font-regular;
+  font-size: 16px;
+  line-height: 16px;
+}
+h6 {
+  font-size: 12px;
+  line-height: 12px;
+}
+p {
   color: $accent-color;
 }
