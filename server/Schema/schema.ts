@@ -2,23 +2,13 @@ import axios from 'axios';
 import {
   GraphQLObjectType,
   GraphQLString,
-  GraphQLInt,
   GraphQLSchema,
   GraphQLList,
 } from 'graphql';
 
-const API_KEY = process.env.API_KEY;
+const API_KEY = process.env.API_KEY || 'b952b6fd269faac52915ed8ea47547d7';
 
-const MovieDBPath = 'https://api.themoviedb.org/3/movie';
-const PopularMoviesType = new GraphQLObjectType({
-  name: 'PopularMovies',
-  fields: {
-    id: {type: GraphQLInt},
-    poster_path: {type: GraphQLString},
-    title: {type: GraphQLString},
-    overview: {type: GraphQLString},
-  },
-});
+const MovieDBPath = 'https://api.themoviedb.org/3/';
 const MovieInfoType = new GraphQLObjectType({
   name: 'MovieInfo',
   fields: {
@@ -36,15 +26,16 @@ const MovieInfoType = new GraphQLObjectType({
     homepage: {type: GraphQLString},
   },
 });
+
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
     popularMovies: {
-      type: new GraphQLList(PopularMoviesType),
+      type: new GraphQLList(MovieInfoType),
       resolve() {
         return axios
           .get(
-            `${MovieDBPath}/popular?api_key=${API_KEY}&language=en-US&page=1`
+            `${MovieDBPath}movie/popular?api_key=${API_KEY}&language=en-US&page=1`
           )
           .then((res) => {
             const movies = res.data.results;
@@ -57,13 +48,33 @@ const RootQuery = new GraphQLObjectType({
           });
       },
     },
+    movieSearch: {
+      type: new GraphQLList(MovieInfoType),
+      args: {query: {type: GraphQLString}},
+      resolve(_parentValue, args) {
+        return axios
+          .get(
+            `${MovieDBPath}search/movie?api_key=${API_KEY}&query=${args.query}`
+          )
+          .then((res) => {
+            const movieResults = res.data.results;
+            movieResults.map(
+              (movie) =>
+                (movie.poster_path =
+                  'https://image.tmdb.org/t/p/w94_and_h141_bestv2' +
+                  movie.poster_path)
+            );
+            return movieResults;
+          });
+      },
+    },
     movieInfo: {
       type: MovieInfoType,
       args: {id: {type: GraphQLString}},
       resolve(_parentValue, args) {
         return axios
           .get(
-            `${MovieDBPath}/${args.id}?api_key=${API_KEY}&language=en-US&page=1`
+            `${MovieDBPath}movie/${args.id}?api_key=${API_KEY}&language=en-US&page=1`
           )
           .then((res) => {
             const movie = res.data;

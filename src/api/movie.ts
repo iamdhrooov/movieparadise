@@ -28,3 +28,13 @@ export const GET_MOVIE_INFO = gql(/* GraphQL */ `
     }
   }
 `);
+
+export const SEARCH_MOVIE = gql(/* GraphQL */ `
+  query SearchMovie($query: String!) {
+    movieSearch(query: $query) {
+      id
+      title
+      poster_path
+    }
+  }
+`);

@@ -4,7 +4,8 @@ import App from './pages/App';
 import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client';
 
 const client = new ApolloClient({
-  uri: 'https://movieparadiseo.herokuapp.com/graphql/',
+  uri:
+    process.env.MOVIE_SERVER || 'https://movieparadiseo.herokuapp.com/graphql/',
   cache: new InMemoryCache(),
 });
 

@@ -8,6 +8,7 @@ import {Paradise} from '../utils/types';
 
 const Home = () => {
   const {loading, data} = useQuery(GET_POPULAR_MOVIES as any);
+
   const [popularMovies, setPopularMovies] = useState(
     [] as Paradise.MovieCardInfo[]
   );
@@ -17,15 +18,9 @@ const Home = () => {
     }
   }, [loading]);
 
-  const doSearch = (searchText: string) => {
-    const filteredMovies = data.popularMovies.filter((e) =>
-      e.title.toLowerCase().includes(searchText.toLowerCase())
-    );
-    setPopularMovies(filteredMovies);
-  };
   return (
     <div className='home-wrapper'>
-      <AppBar onSearch={doSearch} />
+      <AppBar showSearch />
       <div className='popular-movies'>
         <h2>Popular Movies</h2>
         {loading ? (
