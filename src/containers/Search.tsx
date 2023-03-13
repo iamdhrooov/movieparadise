@@ -1,11 +1,24 @@
 import {useLazyQuery} from '@apollo/client';
-import {useState} from 'react';
+import {useMemo, useState} from 'react';
 import {useHistory} from 'react-router-dom';
 import {SEARCH_MOVIE} from '../api/movie';
 import {SearchIcon} from '../components/icons';
 import MovieSearchCard from '../components/MovieSearchCard';
 import '../styles/appBar.scss';
 import {Paradise} from '../utils/types';
+
+const debounce = (func: Function, wait: number) => {
+  let timeout;
+  const debouncedFunction = (...args) => {
+    const laterFunc = () => {
+      timeout = null;
+      func(...args);
+    };
+    clearTimeout(timeout);
+    setTimeout(laterFunc, wait);
+  };
+  return debouncedFunction;
+};
 
 const useMovieSearch = () => {
   const [query, setQuery] = useState('');
@@ -27,15 +40,22 @@ const useMovieSearch = () => {
 
 const SearchBar = () => {
   const history = useHistory();
-  const {setQuerySearch, query, results} = useMovieSearch();
+
+  const {setQuerySearch, results} = useMovieSearch();
+
+  const handleChange = (e) => {
+    setQuerySearch(e.target.value);
+  };
+
+  const debouncedResults = useMemo(() => debounce(handleChange, 1000), []);
+
   return (
     <div className='search-bar'>
       <div className='search-bar-container'>
         <input
           className='input-style'
-          value={query}
           placeholder={'Search for any movie'}
-          onChange={(e) => setQuerySearch(e.target.value)}></input>
+          onChange={debouncedResults}></input>
         <SearchIcon color={'#FFF'} />
       </div>
       {results.length ? (

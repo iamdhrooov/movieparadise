@@ -4,6 +4,9 @@ import {
   GraphQLString,
   GraphQLSchema,
   GraphQLList,
+  GraphQLInt,
+  GraphQLBoolean,
+  GraphQLNonNull,
 } from 'graphql';
 
 const API_KEY = process.env.API_KEY || 'b952b6fd269faac52915ed8ea47547d7';
@@ -27,15 +30,24 @@ const MovieInfoType = new GraphQLObjectType({
   },
 });
 
+const PopularMovies = new GraphQLObjectType({
+  name: 'PopularMovies',
+  fields: {
+    page: {type: GraphQLInt},
+    results: {type: new GraphQLList(MovieInfoType)},
+    hasMore: {type: GraphQLBoolean},
+  },
+});
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
     popularMovies: {
-      type: new GraphQLList(MovieInfoType),
-      resolve() {
+      type: new GraphQLNonNull(PopularMovies),
+      args: {page: {type: GraphQLInt}},
+      resolve: async (_parentValue, args) => {
         return axios
           .get(
-            `${MovieDBPath}movie/popular?api_key=${API_KEY}&language=en-US&page=1`
+            `${MovieDBPath}movie/popular?api_key=${API_KEY}&language=en-US&page=${args.page}`
           )
           .then((res) => {
             const movies = res.data.results;
@@ -44,7 +56,12 @@ const RootQuery = new GraphQLObjectType({
                 (movie.poster_path =
                   'https://image.tmdb.org/t/p/w500' + movie.poster_path)
             );
-            return movies;
+            const resData = {
+              page: args.page,
+              results: movies,
+              hasMore: res.data.total_pages > args.page,
+            };
+            return resData;
           });
       },
     },

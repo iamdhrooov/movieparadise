@@ -1,12 +1,16 @@
 import {gql} from '@apollo/client';
 
 export const GET_POPULAR_MOVIES = gql(/* GraphQL */ `
-  query GetPopularMovies {
-    popularMovies {
-      id
-      poster_path
-      title
-      overview
+  query GetPopularMovies($page: Int!) {
+    popularMovies(page: $page) {
+      results {
+        id
+        overview
+        title
+        poster_path
+      }
+      hasMore
+      page
     }
   }
 `);

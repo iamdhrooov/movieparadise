@@ -1,0 +1,12 @@
+query GetPopularMovies($page: Int!) {
+  popularMovies(page: $page) {
+    results {
+      id
+      overview
+      title
+      poster_path
+    }
+    hasMore
+    page
+  }
+}

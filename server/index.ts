@@ -2,6 +2,8 @@ import 'reflect-metadata';
 import express from 'express';
 import {ApolloServer} from 'apollo-server-express';
 import schema from './Schema/schema';
+
+export let client;
 const PORT = process.env.PORT || 4000;
 (async () => {
   const app = express();
